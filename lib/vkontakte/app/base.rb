@@ -65,8 +65,9 @@ module Vkontakte
       # More info: http://vkontakte.ru/developers.php?oid=-1&p=%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2_%D0%BA_API
       #
       def call(method_name, params = {})
-        if authorized?
-          params = { :access_token => @auth['access_token'] }.merge(params.symbolize_keys)
+        params[:access_token] ||= @auth['access_token'] if authorized?
+        
+        unless params[:access_token].blank?
           get("/method/#{method_name}", params)
         else
           raise VkException.new(method_name, {

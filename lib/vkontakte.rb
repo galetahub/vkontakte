@@ -16,6 +16,7 @@ module Vkontakte
     autoload :Photos, 'vkontakte/api/photos'
     autoload :Friends, 'vkontakte/api/friends'
     autoload :Groups, 'vkontakte/api/groups'
+    autoload :Secure, 'vkontakte/api/secure'
   end
   
   mattr_accessor :config

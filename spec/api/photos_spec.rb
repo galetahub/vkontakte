@@ -17,7 +17,8 @@ describe Vkontakte::Api::Photos do
     end
     
     it "should be call getAlbums method" do
-      puts @iframe.photos.getAlbums 
+      pending "TODO: write tests for photos API"
+      #puts @iframe.photos.getAlbums 
       [].should == []
     end
     
