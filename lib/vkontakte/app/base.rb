@@ -48,6 +48,12 @@ module Vkontakte
         @auth = get("/oauth/access_token", options)
       end
       
+      # Check if app is authorized
+      #
+      def authorized?
+        auth && auth['access_token']
+      end
+      
       # Выполнение запросов к API 
       # https://api.vkontakte.ru/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN
       #   METHOD_NAME – название метода из списка функций API,
@@ -59,14 +65,21 @@ module Vkontakte
       # More info: http://vkontakte.ru/developers.php?oid=-1&p=%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2_%D0%BA_API
       #
       def call(method_name, params = {})
-        params = { :access_token => @auth['access_token'] }.merge(params)
-        get("/method/#{method_name}", params)
+        if authorized?
+          params = { :access_token => @auth['access_token'] }.merge(params.symbolize_keys)
+          get("/method/#{method_name}", params)
+        else
+          raise VkException.new(method_name, {
+            :error => 'access_token is blank', 
+            :error_description => 'You need first authorize app before call API methods.'
+          })
+        end
       end
       
       protected
       
         def get(method_name, options = {})
-          response = self.class.get(method_name, options)
+          response = self.class.get(method_name, :query => options)
           
           if response['error']
             raise VkException.new(method_name, response)
@@ -81,13 +94,14 @@ module Vkontakte
     # {"error":{"error_code":5,"error_msg":"User authorization failed: invalid application type","request_params":[{"key":"oauth","value":"1"},{"key":"method","value":"getProfiles"},{"key":"uid","value":"66748"},{"key":"access_token","value":"533bacf01e11f55b536a565b57531ac114461ae8736d6506a3"}]}}
     #
     class VkException < Exception
-      def initialize(method_name, error_hash)
+      def initialize(method_name, options)
+        error_hash = options.symbolize_keys
         @message = "Error in #{method_name}: "
         
-        if error_hash['error'].is_a?(Hash)
-          @message += error_hash['error'].inspect
+        if error_hash[:error].is_a?(Hash)
+          @message += error_hash[:error].inspect
         else
-          @message += [error_hash['error'], error_hash['error_description']].join('-')
+          @message += [error_hash[:error], error_hash[:error_description]].join('-')
         end
         
         super @message

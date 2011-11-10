@@ -5,9 +5,15 @@ module Vkontakte
     #
     class Iframe < Base
       include Api::Photos
+      include Api::Friends
       
       attr_accessor :params
       
+      # Основные параметры запуска приложения
+      # При отображении приложения посредством flashVars или строки запроса (для IFrame приложений) 
+      # в него передаются следующие параметры: api_url, api_id, user_id, sid, secret, group_id ...
+      # http://vkontakte.ru/developers.php?id=-1_27971896&s=1
+      #
       def params=(value)
         @params = value.symbolize_keys
         
@@ -43,12 +49,19 @@ module Vkontakte
         end
       end
       
+      # результат выполнения API-запроса, формирующийся при просмотре приложения. 
+      # Параметры этого запроса можно ввести в разделе редактирования приложения. 
+      # Например, для получения информации об указанных пользователях, можно использовать следующий запрос: 
+      #   method=getProfiles&uids={user_id},{viewer_id},1,6492&format=json&v=2.0
+      #
       def api_result
         @api_result ||= MultiJson.decode(params[:api_result])
       end
       
       protected
       
+        # это ключ, необходимый для авторизации пользователя на стороннем сервере
+        #
         def auth_key
           Utils.md5( [@config[:app_id], params[:viewer_id], @config[:app_secret]].join('_') )
         end
