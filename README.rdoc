@@ -23,7 +23,20 @@ More info about API:
   
 == Usage
 
-  TODO:
+=== IFrame application
+
+Check if auth_key is valid:
+
+  def index
+    @app = Vkontakte::App::Iframe.new
+    @app.params = params
+    
+    if @app.valid_auth_key?
+      session[:viewer_id] = params[:viewer_id]
+    else
+      render :action => "failure"
+    end
+  end
 
 == Test
 

@@ -11,7 +11,6 @@ module Vkontakte
       end
            
       class Standart < Api::Base
-      
         # Возвращает список идентификаторов друзей пользователя или 
         # расширенную информацию о друзьях пользователя (при использовании параметра fields). 
         # http://vkontakte.ru/developers.php?oid=-1&p=friends.get
@@ -37,7 +36,6 @@ module Vkontakte
         def getMutual(options = {})
           call('friends.getMutual', options)
         end
-        
       end
     end
   end

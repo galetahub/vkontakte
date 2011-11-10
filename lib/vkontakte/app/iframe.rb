@@ -6,6 +6,7 @@ module Vkontakte
     class Iframe < Base
       include Api::Photos
       include Api::Friends
+      include Api::Groups
       
       attr_accessor :params
       
