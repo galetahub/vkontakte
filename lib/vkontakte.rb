@@ -11,6 +11,11 @@ module Vkontakte
     autoload :Iframe, 'vkontakte/app/iframe'
   end
   
+  module Api
+    autoload :Base, 'vkontakte/api/base'
+    autoload :Photos, 'vkontakte/api/photos'
+  end
+  
   mattr_accessor :config
   @@config = Config.new
   

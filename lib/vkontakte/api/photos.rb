@@ -5,12 +5,20 @@ module Vkontakte
       def self.included(base)
         base.class_eval do
           define_method :photos do
-            @photos ||= Photos.new(base)
+            @photos ||= Standart.new(self)
           end
         end
       end
       
-      class Photos < Vkontakte::Api::Base
+      module Extended
+        def self.included(base)
+          base.define_method :photos do
+            @photos ||= Extend.new(self)
+          end
+        end
+      end
+      
+      class Standart < Api::Base
       
         # возвращает список альбомов пользователя.
         #
@@ -114,6 +122,97 @@ module Vkontakte
           call('photos.saveWallPhoto', options)
         end
       end
+      
+      
+      
+      
+      class Extend < Standart    
+        # возвращает список комментариев к фотографии.
+        #
+        def getComments(options={})
+          call('photos.getComments', options)
+        end
+        
+        # возвращает список комментариев к альбому или ко всем альбомам.
+        #
+        def getAllComments(options={})
+          call('photos.getAllComments', options)
+        end
+        
+        # создает новый комментарий к фотографии.
+        #
+        def createComment(options={})
+          call('photos.createComment', options)
+        end
+        
+        # изменяет текст комментария к фотографии.
+        #
+        def editComment(options={})
+          call('photos.editComment', options)
+        end
+        
+        # удаляет комментарий к фотографии.
+        #
+        def deleteComment(options={})
+          call('photos.deleteComment', options)
+        end
+        
+        # восстанавливает комментарий к фотографии.
+        #
+        def restoreComment(options={})
+          call('photos.restoreComment', options)
+        end
+        
+        # возвращает список фотографий, на которых отмечен пользователь.
+        #
+        def getUserPhotos(options={})
+          call('photos.getUserPhotos', options)
+        end
+        
+        # возвращает список отметок на фотографии.
+        #
+        def getTags(options={})
+          call('photos.getTags', options)
+        end
+        
+        # добавляет отметку на фотографию.
+        #
+        def putTag(options={})
+          call('photos.putTag', options)
+        end
+        
+        # удаляет отметку с фотографии.
+        #
+        def removeTag(options={})
+          call('photos.removeTag', options)
+        end
+        
+        # удаляет фотоальбом пользователя.
+        #
+        def deleteAlbumnew(options={})
+          call('photos.deleteAlbumnew', options)
+        end
+        
+        # возвращает адрес сервера для загрузки фотографии в качестве прикрепления к личному сообщению.
+        #
+        def getMessagesUploadServer(options={})
+          call('photos.getMessagesUploadServer', options)
+        end
+        
+        # сохраняет фотографию после загрузки.
+        #
+        def saveMessagesPhoto(options={})
+          call('photos.saveMessagesPhoto', options)
+        end
+        
+        # удаляет фотографию.
+        #
+        def delete(options={})
+          call('photos.delete', options)
+        end
+      end
+      
+      
     end
   end
 end

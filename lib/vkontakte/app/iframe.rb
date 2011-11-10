@@ -4,6 +4,8 @@ module Vkontakte
     # More info at http://vkontakte.ru/developers.php?id=-1_27971896&s=1
     #
     class Iframe < Base
+      include Api::Photos
+      
       attr_accessor :params
       
       def params=(value)
