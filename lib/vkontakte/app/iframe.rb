@@ -1,5 +1,3 @@
-require 'digest/md5'
-
 module Vkontakte
   module App
     # IFrame приложения
@@ -12,7 +10,7 @@ module Vkontakte
         @params = value.symbolize_keys
         
         if @params[:access_token] && auth.nil?
-          auth = { 'access_token' => @params[:access_token] }
+          self.auth = { 'access_token' => @params[:access_token] }
         end
         
         @params
@@ -41,6 +39,10 @@ module Vkontakte
           when '2' then :be
           when '3' then :en
         end
+      end
+      
+      def api_result
+        @api_result ||= MultiJson.decode(params[:api_result])
       end
       
       protected
