@@ -15,7 +15,8 @@ module Vkontakte
         def default_options
           { 
             :timestamp => Time.now.utc.to_i, 
-            :random => Kernel.rand(10000) 
+            :random => Kernel.rand(10000),
+            :client_secret => Vkontakte.config.app_secret 
           }
         end
         

@@ -18,10 +18,16 @@ More info about API:
     config.app_secret = "YOUR Vkontakte APP SECRET"
     config.format = :json
     config.debug = false
-    config.logger = Rails.logger
+    config.logger = File.open(Rails.root.join('log', 'vkontakte.log'), "a")
   end
   
 == Usage
+
+=== Secure API
+
+  @app = Vkontakte::App::Secure.new
+  @app.secure.getAppBalance         # {"response"=>2000}
+  @app.auth                         # {"expires_in"=>0, "access_token"=>"d173f5...319f"}
 
 === IFrame application
 
