@@ -9,6 +9,7 @@ module Vkontakte
   module App
     autoload :Base, 'vkontakte/app/base'
     autoload :Iframe, 'vkontakte/app/iframe'
+    autoload :Secure, 'vkontakte/app/secure'
   end
   
   module Api

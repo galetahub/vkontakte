@@ -7,7 +7,6 @@ module Vkontakte
       include Api::Photos
       include Api::Friends
       include Api::Groups
-      include Api::Secure
       
       attr_accessor :params
       
