@@ -10,6 +10,7 @@ module Vkontakte
     autoload :Base, 'vkontakte/app/base'
     autoload :Iframe, 'vkontakte/app/iframe'
     autoload :Secure, 'vkontakte/app/secure'
+    autoload :User, 'vkontakte/app/user'
   end
   
   module Api
@@ -18,6 +19,7 @@ module Vkontakte
     autoload :Friends, 'vkontakte/api/friends'
     autoload :Groups, 'vkontakte/api/groups'
     autoload :Secure, 'vkontakte/api/secure'
+    autoload :Profile, 'vkontakte/api/profile'
   end
   
   mattr_accessor :config
