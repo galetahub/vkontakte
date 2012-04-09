@@ -5,7 +5,7 @@ module Vkontakte
     #
     class Secure < Base
       include Api::Secure
-      
+
       def initialize(app_id = nil, app_secret = nil)
         super
         authorize
