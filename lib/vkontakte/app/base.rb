@@ -18,16 +18,15 @@ module Vkontakte
         }
       end
 
-      # http://vkontakte.ru/developers.php?oid=-1&p=%D0%90%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F
+      # http://vk.com/developers.php?oid=-1&p=%D0%90%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8F
       # Site auth:
-      # https://api.vkontakte.ru/oauth/access_token?
+      # https://oauth.vk.com/access_token?
       #   client_id=APP_ID&
       #   client_secret=APP_SECRET&
       #   code=7a6fa4dff77a228eeda56603b8f53806c883f011c40b72630bb50df056f6479e52a
       #
       # Server auth:
-      # https://api.vkontakte.ru/oauth/access_token?
-      #   client_id=' + APP_ID + '&client_secret=' + APP_SECRET + '&grant_type=client_credentials'
+      # https://oauth.vk.com/access_token?client_id=' + APP_ID + '&client_secret=' + APP_SECRET + '&grant_type=client_credentials'
       #
       # Response:
       #   {"access_token":"533bacf01e11f55b536a565b57531ac114461ae8736d6506a3", "expires_in":43200, "user_id":6492}
@@ -56,14 +55,14 @@ module Vkontakte
       end
 
       # Выполнение запросов к API
-      # https://api.vkontakte.ru/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN
+      # https://api.vk.com/method/METHOD_NAME?PARAMETERS&access_token=ACCESS_TOKEN
       #   METHOD_NAME – название метода из списка функций API,
       #   PARAMETERS – параметры соответствующего метода API,
       #   ACCESS_TOKEN – ключ доступа, полученный в результате успешной авторизации приложения.
       # Example:
-      # https://api.vkontakte.ru/method/getProfiles?uid=66748&access_token=533bacf01e11f55b536a565b57531ac114461ae8736d6506a3
+      # https://api.vk.com/method/getProfiles?uid=66748&access_token=533bacf01e11f55b536a565b57531ac114461ae8736d6506a3
       #
-      # More info: http://vkontakte.ru/developers.php?oid=-1&p=%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2_%D0%BA_API
+      # More info: http://vk.com/developers.php?oid=-1&p=%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5_%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%BE%D0%B2_%D0%BA_API
       #
       def call(method_name, params = {})
         params[:access_token] ||= @auth['access_token'] if authorized?

@@ -1,7 +1,7 @@
 module Vkontakte
   module App
     # Данный метод доступен только с серверной стороны.
-    # More info at http://vkontakte.ru/developers.php?id=-1_27971896&s=1
+    # More info at http://vk.com/developers.php?id=-1_27971896&s=1
     #
     class Secure < Base
       include Api::Secure

@@ -21,7 +21,7 @@ module Vkontakte
         end
 
         # Отправляет уведомление пользователю.
-        # http://vkontakte.ru/developers.php?oid=-1&p=secure.sendNotification
+        # http://vk.com/developers.php?oid=-1&p=secure.sendNotification
         #
         def sendNotification(options = {})
           options = default_options.merge(options)
