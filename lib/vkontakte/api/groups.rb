@@ -12,7 +12,7 @@ module Vkontakte
 
       class Standart < Api::Base
         # Возвращает список групп указанного пользователя.
-        # http://vkontakte.ru/developers.php?oid=-1&p=groups.get
+        # http://vk.com/developers.php?oid=-1&p=groups.get
         #
         def get(options = {})
           call('groups.get', options)
