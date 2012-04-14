@@ -17,7 +17,7 @@ describe Vkontakte::Api::Groups do
         "https://api.vk.com/method/groups.get?access_token=#{@token}&uid=81202312",
         :body => '{"response":[16527885]}')
 
-      @iframe.groups.get(:uid => 81202312).should == {"response" => [16527885]}
+      @iframe.groups.get(:uid => 81202312).should == [16527885]
     end
 
     it "should raise permission error on access friend groups" do
@@ -40,7 +40,7 @@ describe Vkontakte::Api::Groups do
           "https://api.vk.com/method/groups.getById?access_token=#{@token}&gid=#{@group_id}",
           :body => '{"response":[{"gid":16527885,"name":"Club Music Group of Kiev","screen_name":"club16527885","is_closed":0,"type":"group","photo":"http:\/\/cs884.vkontakte.ru\/g16527885\/c_08b73308.jpg","photo_medium":"http:\/\/cs884.vkontakte.ru\/g16527885\/b_6e68053d.jpg","photo_big":"http:\/\/cs884.vkontakte.ru\/g16527885\/a_ba67625c.jpg"}]}')
 
-        @iframe.groups.getById(:gid => @group_id).should == {"response"=>[{"photo"=>"http://cs884.vkontakte.ru/g16527885/c_08b73308.jpg", "name"=>"Club Music Group of Kiev", "gid"=>16527885, "is_closed"=>0, "photo_medium"=>"http://cs884.vkontakte.ru/g16527885/b_6e68053d.jpg", "type"=>"group", "photo_big"=>"http://cs884.vkontakte.ru/g16527885/a_ba67625c.jpg", "screen_name"=>"club16527885"}]}
+        @iframe.groups.getById(:gid => @group_id).should == [{"photo"=>"http://cs884.vkontakte.ru/g16527885/c_08b73308.jpg", "name"=>"Club Music Group of Kiev", "gid"=>16527885, "is_closed"=>0, "photo_medium"=>"http://cs884.vkontakte.ru/g16527885/b_6e68053d.jpg", "type"=>"group", "photo_big"=>"http://cs884.vkontakte.ru/g16527885/a_ba67625c.jpg", "screen_name"=>"club16527885"}]
       end
 
       it "should return group member" do
@@ -48,7 +48,7 @@ describe Vkontakte::Api::Groups do
           "https://api.vk.com/method/groups.isMember?access_token=#{@token}&gid=#{@group_id}&uid=81202312",
           :body => '{"response":1}')
 
-        @iframe.groups.isMember(:uid => 81202312, :gid => @group_id).should == {"response" => 1}
+        @iframe.groups.isMember(:uid => 81202312, :gid => @group_id).should == 1
       end
 
       it "should return all groups members" do
@@ -57,7 +57,7 @@ describe Vkontakte::Api::Groups do
           :body => '{"response":{"count":29364,"users":[107765962,66506999,145557591,72256631,28639402]}}')
 
         response = @iframe.groups.getMembers(:gid => @group_id, :count => 5)
-        response.should == {"response"=>{"count"=>29364, "users"=>[107765962, 66506999, 145557591, 72256631, 28639402]}}
+        response.should == {"count"=>29364, "users"=>[107765962, 66506999, 145557591, 72256631, 28639402]}
       end
     end
 
@@ -67,7 +67,7 @@ describe Vkontakte::Api::Groups do
           "https://api.vk.com/method/groups.join?access_token=#{@token}&gid=1", :body => '{"response":1}')
 
         response = @iframe.groups.join(:gid => 1)
-        response.should == {"response"=> 1}
+        response.should == 1
       end
     end
 
@@ -77,7 +77,7 @@ describe Vkontakte::Api::Groups do
           "https://api.vk.com/method/groups.leave?access_token=#{@token}&gid=1", :body => '{"response":1}')
 
         response = @iframe.groups.leave(:gid => 1)
-        response.should == {"response"=> 1}
+        response.should == 1
       end
     end
   end

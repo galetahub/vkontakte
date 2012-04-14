@@ -20,7 +20,7 @@ describe Vkontakte::Api::Photos do
         "https://api.vk.com/method/photos.getAlbums?access_token=#{@token}",
         :body => response)
 
-      @iframe.photos.getAlbums.should == {"response" => [{"aid" => "17071606","thumb_id" => "98054577","owner_id" => "6492","title" => "", "description" => "","created" => "1204576880","updated" => "1229532461", "size" => "3","privacy" => "0"}]}
+      @iframe.photos.getAlbums.should == [{"aid" => "17071606","thumb_id" => "98054577","owner_id" => "6492","title" => "", "description" => "","created" => "1204576880","updated" => "1229532461", "size" => "3","privacy" => "0"}]
     end
 
   end

@@ -24,7 +24,7 @@ describe Vkontakte::Api::Secure do
         "https://api.vk.com/method/secure.sendNotification?" + HTTParty::HashConversions.to_params(p),
         :body => '{"response":"81202312"}')
 
-      @app.secure.sendNotification(p).should == {"response"=>"81202312"}
+      @app.secure.sendNotification(p).should == "81202312"
     end
 
     it "should call getAppBalance" do
@@ -32,7 +32,7 @@ describe Vkontakte::Api::Secure do
         "https://api.vk.com/method/secure.getAppBalance?" + HTTParty::HashConversions.to_params(@options),
         :body => '{"response":5000}')
 
-      @app.secure.getAppBalance(@options).should == {"response"=>5000}
+      @app.secure.getAppBalance(@options).should == 5000
     end
 
     it "should call getBalance" do
@@ -42,7 +42,7 @@ describe Vkontakte::Api::Secure do
         "https://api.vk.com/method/secure.getBalance?" + HTTParty::HashConversions.to_params(p),
         :body => '{"response":350}')
 
-      @app.secure.getBalance(p).should == {"response"=>350}
+      @app.secure.getBalance(p).should == 350
     end
 
     it "should call withdrawVotes" do
@@ -52,7 +52,7 @@ describe Vkontakte::Api::Secure do
         "https://api.vk.com/method/secure.withdrawVotes?" + HTTParty::HashConversions.to_params(p),
         :body => '{"response":2}')
 
-      @app.secure.withdrawVotes(p).should == {"response"=>2}
+      @app.secure.withdrawVotes(p).should == 2
     end
 
     it "should call getTransactionsHistory" do
@@ -62,7 +62,7 @@ describe Vkontakte::Api::Secure do
         "https://api.vk.com/method/secure.getTransactionsHistory?" + HTTParty::HashConversions.to_params(p),
         :body => '{"response":[{"id":"65968","uid_from":"34804733","uid_to":"33239732","votes":"1000","date":"1243421339"},{"id":"65956","uid_from":"35003049","uid_to":"33239732","votes":"300","date":"1243421213"}]}')
 
-      @app.secure.getTransactionsHistory(p).should == {"response"=>[{"votes"=>"1000", "uid_to"=>"33239732", "date"=>"1243421339", "id"=>"65968", "uid_from"=>"34804733"}, {"votes"=>"300", "uid_to"=>"33239732", "date"=>"1243421213", "id"=>"65956", "uid_from"=>"35003049"}]}
+      @app.secure.getTransactionsHistory(p).should == [{"votes"=>"1000", "uid_to"=>"33239732", "date"=>"1243421339", "id"=>"65968", "uid_from"=>"34804733"}, {"votes"=>"300", "uid_to"=>"33239732", "date"=>"1243421213", "id"=>"65956", "uid_from"=>"35003049"}]
     end
 
     it "should call addRating" do
@@ -72,7 +72,7 @@ describe Vkontakte::Api::Secure do
         "https://api.vk.com/method/secure.addRating?" + HTTParty::HashConversions.to_params(p),
         :body => '{"response":{"rating_added":200}}')
 
-      @app.secure.addRating(p).should == {"response" => {"rating_added" => 200}}
+      @app.secure.addRating(p).should == {"rating_added" => 200}
     end
 
     it "should call setCounter" do
@@ -82,7 +82,7 @@ describe Vkontakte::Api::Secure do
         "https://api.vk.com/method/secure.setCounter?" + HTTParty::HashConversions.to_params(p),
         :body => '{"response":1}')
 
-      @app.secure.setCounter(p).should == {"response" => 1}
+      @app.secure.setCounter(p).should == 1
     end
   end
 end
