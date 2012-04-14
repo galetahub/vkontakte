@@ -22,7 +22,7 @@ describe Vkontakte::Api::Profile do
     end
 
     it "should have info in parsed_reponse" do
-      @user.fetch.parsed_response['response'].should eq ([{"uid" => 2592709, "last_name" => "Галета", "first_name" => "Павел"}])
+      @user.fetch.should eq [{"uid" => 2592709, "last_name" => "Галета", "first_name" => "Павел"}]
     end
 
   end
