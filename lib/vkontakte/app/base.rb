@@ -31,21 +31,20 @@ module Vkontakte
       # Response:
       #   {"access_token":"533bacf01e11f55b536a565b57531ac114461ae8736d6506a3", "expires_in":43200, "user_id":6492}
       #
-      def authorize(code = nil, options = {})
-        options = {
+      def authorize(code = nil, params = {})
+        params = {
           :client_id => @config[:app_id],
           :client_secret => @config[:app_secret],
           :code => code
-        }.merge(options)
+        }.merge(params)
 
         # Server auth
-        if options[:code].blank?
-          options.delete(:code)
-          options[:grant_type] = 'client_credentials'
+        if params[:code].blank?
+          params.delete(:code)
+          params[:grant_type] = 'client_credentials'
         end
 
-        self.class.base_uri "https://oauth.vk.com"
-        @auth = get("/access_token", options)
+        @auth = get("/access_token", {:query => params, :base_uri => "https://oauth.vk.com"})
       end
 
       # Check if app is authorized
@@ -68,8 +67,7 @@ module Vkontakte
         params[:access_token] ||= @auth['access_token'] if authorized?
 
         unless params[:access_token].blank?
-          self.class.base_uri "https://api.vk.com"
-          get("/method/#{method_name}", params)
+          get("/method/#{method_name}", {:query => params, :base_uri => "https://api.vk.com"})
         else
           raise VkException.new(method_name, {
             :error => 'access_token is blank',
@@ -81,7 +79,7 @@ module Vkontakte
       protected
 
         def get(method_name, options = {})
-          response = self.class.get(method_name, :query => options)
+          response = self.class.get(method_name, options)
 
           if response['error']
             raise VkException.new(method_name, response)
