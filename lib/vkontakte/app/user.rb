@@ -14,6 +14,8 @@ module Vkontakte
       include Api::Friends
       include Api::Groups
       include Api::Profile
+      include Api::Wall
+      include Api::Likes
 
       attr_reader :identifier
 

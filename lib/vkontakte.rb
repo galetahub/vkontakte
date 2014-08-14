@@ -21,6 +21,7 @@ module Vkontakte
     autoload :Photos, 'vkontakte/api/photos'
     autoload :Profile, 'vkontakte/api/profile'
     autoload :Secure, 'vkontakte/api/secure'
+    autoload :Wall, 'vkontakte/api/wall'
   end
 
   mattr_accessor :config
