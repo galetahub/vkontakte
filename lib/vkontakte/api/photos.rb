@@ -10,14 +10,6 @@ module Vkontakte
         end
       end
       
-      module Extended
-        def self.included(base)
-          base.define_method :photos do
-            @photos ||= Extend.new(self)
-          end
-        end
-      end
-      
       class Standart < Api::Base
       
         # возвращает список альбомов пользователя.
@@ -121,12 +113,7 @@ module Vkontakte
         def saveWallPhoto(options={})
           call('photos.saveWallPhoto', options)
         end
-      end
-      
-      
-      
-      
-      class Extend < Standart    
+
         # возвращает список комментариев к фотографии.
         #
         def getComments(options={})
@@ -211,8 +198,6 @@ module Vkontakte
           call('photos.delete', options)
         end
       end
-      
-      
     end
   end
 end

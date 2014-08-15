@@ -5,7 +5,7 @@ describe Vkontakte::Api::Wall do
     Vkontakte::Api::Wall.should be_a(Module)
   end
 
-  context 'iframe' do
+  context 'user' do
     before(:each) do
       @token = '3a3d250e705051b03ed479343c3ec2833783eea3eea29860182716ed1d40319'
       @user = Vkontakte::App::User.new("2592709", :access_token => @token)
