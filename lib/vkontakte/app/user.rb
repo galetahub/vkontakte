@@ -31,6 +31,16 @@ module Vkontakte
         profile.get( options )
       end
 
+      def fetch_followers(options = {})
+        options = { :user_id => @identifier }.merge(options)
+        profile.getFollowers(options)
+      end
+
+      def fetch_friends(options = {})
+        options = { :user_id => @identifier }.merge(options)
+        friends.get(options)
+      end
+        
       def self.fetch(identifier, options = {})
         new(identifier, options).fetch
       end

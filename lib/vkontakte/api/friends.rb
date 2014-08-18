@@ -13,7 +13,7 @@ module Vkontakte
       class Standart < Api::Base
         # Возвращает список идентификаторов друзей пользователя или
         # расширенную информацию о друзьях пользователя (при использовании параметра fields).
-        # http://vk.com/developers.php?oid=-1&p=friends.get
+        # https://vk.com/dev/friends.get
         #
         def get(options = {})
           call('friends.get', options)

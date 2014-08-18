@@ -46,6 +46,14 @@ module Vkontakte
         def likesGetList(options = {})
           call('likes.getList', options)
         end
+
+        # Возвращает список идентификаторов пользователей, которые являются подписчиками пользователя. 
+        # Идентификаторы пользователей в списке отсортированы в порядке убывания времени их добавления.
+        # https://vk.com/dev/users.getFollowers
+        #
+        def getFollowers(options = {})
+          call('users.getFollowers', options)
+        end
       end
     end
   end
