@@ -24,7 +24,7 @@ module Vkontakte
       end
     end
     
-    hash_accessor :app_id, :app_secret, :debug, :logger, :format
+    hash_accessor :app_id, :app_secret, :debug, :logger, :format, :without_token
     
     def initialize(other={})
       merge!(other)
@@ -33,6 +33,7 @@ module Vkontakte
       self[:format] ||= :json
       self[:debug] ||= false
       self[:logger] ||= nil
+      self[:without_token] ||= nil
     end
   end
 end

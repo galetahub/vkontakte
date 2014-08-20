@@ -66,7 +66,7 @@ module Vkontakte
       def call(method_name, params = {})
         params[:access_token] ||= @auth['access_token'] if authorized?
 
-        unless params[:access_token].blank?
+        unless params[:access_token].blank? && !Vkontakte.config.without_token
           get("/method/#{method_name}", {:query => params, :base_uri => "https://api.vk.com"})
         else
           raise VkException.new(method_name, {

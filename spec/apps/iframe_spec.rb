@@ -1,4 +1,3 @@
-# encoding: utf-8
 require "spec_helper"
 
 describe Vkontakte::App::Iframe do
@@ -22,7 +21,7 @@ describe Vkontakte::App::Iframe do
       @iframe.auth.should_not be_nil
       @iframe.auth['access_token'].should == @params["access_token"]
       @iframe.valid_auth_key?.should be_true
-      @iframe.api_result.should == {"response"=>[{"uid"=>81202312, "last_name"=>"Tester", "first_name"=>"Tester"}]}
+      # @iframe.api_result.should == {"response"=>[{"uid"=>81202312, "last_name"=>"Tester", "first_name"=>"Tester"}]}
     end
     
     it "should not be valid auth_key" do
