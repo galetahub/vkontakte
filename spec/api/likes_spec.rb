@@ -1,4 +1,3 @@
-# encoding: utf-8
 require 'spec_helper'
 
 describe Vkontakte::Api::Likes do
@@ -15,7 +14,7 @@ describe Vkontakte::Api::Likes do
 
     it 'should return user, liked this page' do
       FakeWeb.register_uri(:get,
-        "https://api.vk.com/method/likes.getList?type=sitepage&page_url=http%3A%2F%2Fvk.com&owner_id=1&access_token=#{@token}",
+        "https://api.vk.com/method/likes.getList?v=5.24&type=sitepage&page_url=http%3A%2F%2Fvk.com&owner_id=1&access_token=#{@token}",
         :body => '{"response":{"count":2,"users":[1,2]}}')
 
       @iframe.likes.getList(:type => 'sitepage', :page_url => 'http://vk.com', :owner_id => 1).should eq ({"count" => 2, "users" => [1, 2]})

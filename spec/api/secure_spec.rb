@@ -1,4 +1,3 @@
-# encoding: utf-8
 require "spec_helper"
 
 describe Vkontakte::Api::Secure do
@@ -15,7 +14,7 @@ describe Vkontakte::Api::Secure do
         :body => '{"access_token":"#{@token}"}')
 
       @app = Vkontakte::App::Secure.new
-      @options = @app.secure.default_options.merge(:access_token => @token)
+      @options = @app.secure.default_options.merge(:access_token => @token, :v => '5.24')
     end
 
     it "should call sendNotification" do

@@ -13,7 +13,7 @@ describe Vkontakte::App::User do
 
     it "should load user profile" do
       FakeWeb.register_uri(:get,
-        "https://api.vk.com/method/users.get?access_token=ACCESS_TOKEN&uids=uid",
+        "https://api.vk.com/method/users.get?v=5.24&access_token=ACCESS_TOKEN&uids=uid",
         :body => '{"response":[{"uid":2592709, "last_name":"Галета", "first_name":"Павел"}]}')
 
       @user.fetch.should_not be_blank

@@ -10,7 +10,7 @@ module Vkontakte
       end
 
       def default_params
-        @default_params ||= {}
+        @default_params ||= { :v => '5.24' }
       end
 
       def call(method_name, params = {})

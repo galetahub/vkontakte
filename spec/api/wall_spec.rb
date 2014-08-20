@@ -13,7 +13,7 @@ describe Vkontakte::Api::Wall do
 
     it 'should return user wall posts' do
       FakeWeb.register_uri(:get,
-        "https://api.vk.com/method/wall.get?owner_id=2592709&access_token=#{@token}",
+        "https://api.vk.com/method/wall.get?v=5.24&owner_id=2592709&access_token=#{@token}",
         :body => '{"response":{"count":2,"items":[1,2]}}')
 
       @user.wall.get(:owner_id => 2592709).should eq ({"count" => 2, "items" => [1, 2]})
