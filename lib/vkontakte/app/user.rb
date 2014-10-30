@@ -27,7 +27,7 @@ module Vkontakte
       end
 
       def fetch(options = {})
-        options = { :uids => @identifier }.merge(options)
+        options = { :user_ids => @identifier }.merge(options)
         profile.get( options )
       end
 
