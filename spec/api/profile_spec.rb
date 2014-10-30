@@ -15,7 +15,7 @@ describe Vkontakte::Api::Profile do
       @friends_response = '{"response": {"count": 8, "items": [233297, 424407, 593420, 705017, 830116, 838081, 1075165, 1312768]}}'
 
       FakeWeb.register_uri(:get,
-        "https://api.vk.com/method/users.get?v=5.24&uids=2592709&access_token=#{@token}",
+        "https://api.vk.com/method/users.get?v=5.24&user_ids=2592709&access_token=#{@token}",
         :body => response)
 
       FakeWeb.register_uri(:get,
